@@ -12,8 +12,22 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+        //
+        // Plan:
+        // 1. Create a new array with room for 'length' doubles.
+        // 2. Loop index from 0 to length - 1.
+        // 3. Store number * (index + 1) at each index, so index 0 holds the
+        //    1st multiple of number, index 1 holds the 2nd, and so on.
+        // 4. Return the filled array.
 
-        return []; // replace this return statement with your own
+        double[] multiples = new double[length];
+
+        for (int index = 0; index < length; index++)
+        {
+            multiples[index] = number * (index + 1);
+        }
+
+        return multiples; // replace this return statement with your own
     }
 
     /// <summary>
@@ -29,5 +43,29 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+        //
+        // Plan:
+        // 1. Store the number of items in 'data' in a variable called count.
+        // 2. Create a temporary array of ints, also of size count. This is our
+        //    scratch space so we do not overwrite values we still need to read.
+        // 3. Loop index from 0 to count - 1. Each item moves to the right by
+        //    'amount' positions, so its new index is (index + amount) % count.
+        //    The modulo is what wraps the items at the end back to the front.
+        // 4. Copy the temporary array back into 'data' at the same indexes,
+        //    because the test is holding on to this exact list object.
+
+        int count = data.Count;
+        int[] rotated = new int[count];
+
+        for (int index = 0; index < count; index++)
+        {
+            int newIndex = (index + amount) % count;
+            rotated[newIndex] = data[index];
+        }
+
+        for (int index = 0; index < count; index++)
+        {
+            data[index] = rotated[index];
+        }
     }
 }
